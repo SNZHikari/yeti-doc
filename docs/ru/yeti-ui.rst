@@ -513,7 +513,1156 @@ Interim accounting interval
 	Значение шага отправки Interim-пакетов на удаленный сервер (секунды).
 Enable stop accounting
 	Если активна, YETI будет отправлять Stop-accounting пакеты на удаленный сервер.
-	
+
+Routing
+-------
+
+Customer Auth
+~~~~~~~~~~~~~
+
+This entity authenticates calls from customers or gateways, applies them to
+routing table and has some useful filters and options.
+
+Customer Auth form is splitted to 3 tabs and each one is described below.
+
+*General* tab
+`````````````
+
+Name
+    Unique name of Accounting profile.
+    Uses for informational purposes and doesn't affect system behaviour.
+Enabled
+    IP address or hostname of external RADIUS server.
+Customer
+    Customer, who this Customer Auth belongs to
+Account
+    Accout of Customer, which this Customer Auth belongs to
+Gateway
+    Gateway which related to this Customer Auth. That gateway(its parameters),
+    will be used for media handling on the A-leg of a call.
+Rateplan
+    Rateplan, which this Customer Auth belongs to
+Routing Plan
+    Routing Plan, which this Customer Auth belongs to
+Dst Numberlist
+    You may apply Dst Numberlist (Destination) and check B-numbers, by prefix or
+    full-match, then reject it or allow.
+Src Numberlist
+    You may apply Src Numberlist (Source) and check B-numbers, by prefix or
+    full-match, then reject it or allow.
+Dump Level
+    It is possible to capture calls to PCAP files, using this option.
+    You may choose what kind of information should be captured.
+
+    Possible values are:
+        - Capture nothing
+        - Capture all traffic
+        - Capture RTP traffic
+        - Capture signalling traffic
+Enable Audio Recording
+    If checked, the media for calls passing through this Customer Auth will be stored
+    in WAV files.
+Capacity
+    The capacity of the Customer Auth, i.e. how many calls it accepts at the moment.
+Allow Receive Rate Limit
+    A Customer may send special SIP-header in which he send the price for this call he wants to pay.
+    And YETI will rely on this price on the routing stage if we allow such a behaviour.
+Send Billing Information
+    If enabled, YETI adds the special SIP-header into 200 SIP-message, which contains
+    current price for calls, in order to a Customer should be informed.
+
+Match condition options
+```````````````````````
+This part is crucial for authentication process of incoming calls. You should note that a one
+customer may have many of Customer Auth with almost the same parameters, so pay
+attention to parameters besides Ip address.
+
+Transport Protocol
+    **TODO**
+Ip
+    **TODO**
+Pop
+    **TODO**
+Src Prefix
+    **TODO**
+Dst Prefix
+    **TODO**
+Uri Domain
+    **TODO**
+From Domain
+    **TODO**
+To Domain
+    **TODO**
+X Yeti Auth
+    **TODO**
+
+*Number translation* tab
+````````````````````````
+
+Diversion policy
+    Defines what to do with Diversion header within SIP-signalization.
+    Default value is "Clear header", so this header will be deleted.
+Diversion rewrite rule
+    This option should contain a regular expression for changing a Diversion header
+Diversion rewrite result
+    The result of changing a Diversion header, using the Rewrite Rule above
+Src name rewrite rule
+    This field should contain a regular expression for changing the Name field in the
+    Source-number within SIP-signalization
+Src name rewrite result
+    The result of changing the Name field in the Source-number, using the
+    Src name rewrite rule above
+Src rewrite rule
+    This field should contain a regular expression for changing the Source-number
+    within SIP-signalization
+Src rewrite result
+    The result of changing the Name field in the Source-number, using the Src rewrite rule above
+Dst rewrite rule
+    This field should contain a regular expression for changing the Destination-number
+    within SIP-signalization
+Dst rewrite result
+    The result of changing the Name field in the Source-number, using the Dst rewrite rule above
+
+*Radius* tab
+````````````
+
+Radius auth profile
+    Must be specified if the additional radius authentication is required
+Src number radius rewrite rule
+    Should contain regular expression for changing Source-number which will be sent
+    to Radius-server if it's required
+Src number radius rewrite result
+    The result of applying the Src number radius rewrite rule to Source-number
+Dst number radius rewrite rule
+    Should contain regular expression for changing Destination-number which will be sent
+    to Radius-server if it's required
+Dst number radius rewrite result
+    The result of applying the Dst number radius rewrite rule to Destination-number
+Radius accounting profile
+    Must be specified if the radius accounting is required
+
+Rateplans
+~~~~~~~~~
+    **TODO**
+
+**Rateplan** attributes:
+
+Name
+    Unique name for the Rateplan.
+Profit control mode
+    **TODO**
+Send quality alarms to
+    **TODO**
+
+Destinations
+~~~~~~~~~~~~
+    **TODO**
+
+**Destination** attributes:
+
+    Prefix
+        **TODO**
+    Country
+        **TODO**
+    Network
+        **TODO**
+    Reject Calls
+        **TODO**
+    Quality Alarm
+        **TODO**
+    Rateplan
+        **TODO**
+    Routing Tag
+        **TODO**
+    Valid From
+        **TODO**
+    Valid Till
+        **TODO**
+    Rate Policy
+        **TODO**
+    Initial Interval
+        **TODO**
+    Next Interval
+        **TODO**
+    Use Dp Intervals
+        **TODO**
+    External Id
+        **TODO**
+    Initial Rate
+        **TODO**
+    Next Rate
+        **TODO**
+    Connect Fee
+        **TODO**
+    Profit Control Mode
+        **TODO**
+    Dp Margin Fixed
+        **TODO**
+    Dp Margin Percent
+        **TODO**
+    Asr Limit
+        **TODO**
+    Acd Limit
+        **TODO**
+    Short Calls Limit
+        **TODO**
+
+Routing groups
+~~~~~~~~~~~~~~
+    **TODO**
+
+**Routing group** attributes:
+
+    Name
+        **TODO**
+
+Dialpeers
+~~~~~~~~~
+    **TODO**
+
+**Dialpeer** attributes:
+
+    Prefix
+        **TODO**
+    Country
+        **TODO**
+    Network
+        **TODO**
+    Enabled
+        **TODO**
+    Locked
+        **TODO**
+    Routing Group
+        **TODO**
+    Routing Tag
+        **TODO**
+    Vendor
+        **TODO**
+    Account
+        **TODO**
+    Priority
+        **TODO**
+    Force Hit Rate
+        **TODO**
+    Exclusive Route
+        **TODO**
+    Initial Interval
+        **TODO**
+    Initial Rate
+        **TODO**
+    Next Interval
+        **TODO**
+    Next Rate
+        **TODO**
+    Lcr Rate Multiplier
+        **TODO**
+    Connect Fee
+        **TODO**
+    Gateway
+        **TODO**
+    Gateway Group
+        **TODO**
+    Valid From
+        **TODO**
+    Valid Till
+        **TODO**
+    Capacity
+        **TODO**
+    Src Name Rewrite Rule
+        **TODO**
+    Src Name Rewrite Result
+        **TODO**
+    Src Rewrite Rule
+        **TODO**
+    Src Rewrite Result
+        **TODO**
+    Dst Rewrite Rule
+        **TODO**
+    Dst Rewrite Result
+        **TODO**
+    Acd Limit
+        **TODO**
+    Asr Limit
+        **TODO**
+    Short Calls Limit
+        **TODO**
+    Created At
+        **TODO**
+    External
+        **TODO**
+    Current Rate
+        **TODO**
+
+Routing plans
+~~~~~~~~~~~~~
+    **TODO**
+
+**Routing plan** atributes:
+
+    Name
+        **TODO**
+    Sorting
+        **TODO**
+    Use Lnp
+        **TODO**
+    Rate Delta Max
+        **TODO**
+    Routing Groups
+        **TODO**
+
+Routing plan static routes
+~~~~~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Static route** attributes:
+
+    Routing Plan
+        **TODO**
+    Prefix
+        **TODO**
+    Country
+        **TODO**
+    Network
+        **TODO**
+    Priority
+        **TODO**
+    Vendor
+        **TODO**
+
+Routing plan LNP rules
+~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**LNP routing plan rule** attributes:
+
+Routing plan
+    **TODO**
+Dst prefix
+    **TODO**
+Req dst rewrite rule
+    **TODO**
+Req dst rewrite result
+    **TODO**
+Database
+    **TODO**
+Lrn rewrite rule
+    **TODO**
+Lrn rewrite result
+    **TODO**
+
+LNP cache
+~~~~~~~~~
+    **TODO**
+
+Numberlists
+~~~~~~~~~~~
+    **TODO**
+
+**Numberlist** attributes:
+
+    Name
+        **TODO**
+    Mode
+        **TODO**
+    Default Action
+        **TODO**
+    Default Src Rewrite Rule
+        **TODO**
+    Default Src Rewrite Result
+        **TODO**
+    Default Dst Rewrite Rule
+        **TODO**
+    Default Dst Rewrite Result
+        **TODO**
+    Created At
+        **TODO**
+    Updated At
+        **TODO**
+
+Numberlist Items
+~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Numberlist item** attributes:
+
+    Numberlist
+        **TODO**
+    Key
+        **TODO**
+    Action
+        **TODO**
+    Src Rewrite Rule
+        **TODO**
+    Src Rewrite Result
+        **TODO**
+    Dst Rewrite Rule
+        **TODO**
+    Dst Rewrite Result
+        **TODO**
+    Createa At
+        **TODO**
+    Updated At
+        **TODO**
+
+Routing tags
+~~~~~~~~~~~~
+    **TODO**
+
+**Routing tag** attributes:
+
+Name
+    **TODO**
+
+Areas
+~~~~~
+    **TODO**
+
+**Area** attributes:
+
+    Name
+        **TODO**
+
+Area prefixes
+~~~~~~~~~~~~~
+    **TODO**
+
+**Area prefix** attributes:
+
+    Prefix
+        **TODO**
+    Area
+        **TODO**
+
+Routing tags detection
+~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Routing tag detection rule** attributes:
+
+    Src Area
+        **TODO**
+    Dst Area
+        **TODO**
+    Routing Tag
+        **TODO**
+
+Routing tags detection
+~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Routing simulation form** attributes:
+
+    Transport protocol
+        **TODO**
+    Remote ip*
+        **TODO**
+    Remote port*
+        **TODO**
+    Pop
+        **TODO**
+    Src number*
+        **TODO**
+    Dst number*
+        **TODO**
+    Uri domain
+        **TODO**
+    From domain
+        **TODO**
+    To domain
+        **TODO**
+    X yeti auth
+        **TODO**
+Routing simulation
+~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Call simulation** attributes:
+
+    Transport protocol
+        **TODO**
+    Remote ip*
+        **TODO**
+    Remote port*
+        **TODO**
+    Pop
+        **TODO**
+    Src number*
+        **TODO**
+    Dst number*
+        **TODO**
+    Uri domain
+        **TODO**
+    From domain
+        **TODO**
+    To domain
+        **TODO**
+    X yeti auth
+        **TODO**
+    Release mode
+        **TODO**
+
+Cdr
+---
+
+Tables
+~~~~~~
+**TODO**
+
+**Cdr Table Details** attributes:
+    
+    ID
+        **TODO**
+    NAME
+        **TODO**
+    READABLE
+        **TODO**
+    WRITABLE
+        **TODO**
+    DATE START
+        **TODO**
+    DATE STOP
+        **TODO**
+    ACTIVE
+        **TODO**
+
+CDR History
+~~~~~~~~~~~
+    **TODO**
+
+*General Information* tab
+`````````````````````````
+    ID
+        **TODO**
+    TIME START
+        **TODO**
+    TIME CONNECT
+        **TODO**
+    TIME END
+        **TODO**
+    DURATION
+        **TODO**
+    STATUS	FAILURE
+        **TODO**
+    DISCONNECT INITIATOR
+        **TODO**
+    LEGA DISCONNECT CODE
+        **TODO**
+    LEGA DISCONNECT REASON
+        **TODO**
+    INTERNAL DISCONNECT CODE
+        **TODO**
+    INTERNAL DISCONNECT REASON
+        **TODO**
+    LEGB DISCONNECT CODE
+        **TODO**
+    LEGB DISCONNECT REASON
+        **TODO**
+    ROUTING ATTEMPT
+        **TODO**
+    IS LAST CDR
+        **TODO**
+    SRC NAME IN
+        **TODO**
+    SRC PREFIX IN
+        **TODO**
+    FROM DOMAIN
+        **TODO**
+    DST PREFIX IN
+        **TODO**
+    TO DOMAIN
+        **TODO**
+    RURI DOMAIN
+        **TODO**
+    SRC PREFIX ROUTING
+        **TODO**
+    SRC AREA
+        **TODO**
+    DST PREFIX ROUTING
+        **TODO**
+    DST AREA
+        **TODO**
+    LRN
+        **TODO**
+    LNP DATABASE
+        **TODO**
+    SRC NAME OUT
+        **TODO**
+    SRC PREFIX OUT
+        **TODO**
+    DST PREFIX OUT
+        **TODO**
+    DIVERSION IN
+        **TODO**
+    DIVERSION OUT
+        **TODO**
+    DST COUNTRY
+        **TODO**
+    DST NETWORK
+        **TODO**
+    NODE
+        **TODO**
+    POP
+        **TODO**
+    CUSTOMER
+        **TODO**
+    VENDOR
+        **TODO**
+    CUSTOMER ACC
+        **TODO**
+    VENDOR ACC
+        **TODO**
+    CUSTOMER AUTH
+        **TODO**
+    ORIG GW
+        **TODO**
+    TERM GW
+        **TODO**
+
+*Protocol Details* tab
+``````````````````````
+    **TODO**
+
+    ORIG CALL
+        **TODO**
+    TERM CALL
+        **TODO**
+    SIGN ORIG TRANSPORT PROTOCOL
+        **TODO**
+    SIGN ORIG IP
+        **TODO**
+    SIGN ORIG LOCAL IP
+        **TODO**
+    AUTH ORIG TRANSPORT PROTOCOL
+        **TODO**
+    AUTH ORIG IP
+        **TODO**
+    SIGN TERM TRANSPORT PROTOCOL
+        **TODO**
+    SIGN TERM IP
+        **TODO**
+    SIGN TERM LOCAL IP
+        **TODO**
+    LOCAL TAG
+        **TODO**
+    ROUTING DELAY
+        **TODO**
+    PDD
+        **TODO**
+    RTT
+        **TODO**
+    EARLY MEDIA PRESENT
+        **TODO**
+    LEGA RX PAYLOADS
+        **TODO**
+    LEGA TX PAYLOADS
+        **TODO**
+    LEGB RX PAYLOADS
+        **TODO**
+    LEGB TX PAYLOADS
+        **TODO**
+    LEGA RX BYTES
+        **TODO**
+    LEGA TX BYTES
+        **TODO**
+    LEGA RX DECODE ERRS
+        **TODO**
+    LEGA RX NO BUF ERRS
+        **TODO**
+    LEGA RX PARSE ERRS
+        **TODO**
+    LEGB RX BYTES
+        **TODO**
+    LEGB TX BYTES
+        **TODO**
+    LEGB RX DECODE ERRS
+        **TODO**
+    LEGB RX NO BUF ERRS
+        **TODO**
+    LEGB RX PARSE ERRS
+        **TODO**
+    CORE VERSION
+        **TODO**
+    YETI VERSION
+        **TODO**
+    LEGA USER AGENT
+        **TODO**
+    LEGB USER AGENT
+        **TODO**
+
+*Routing&Billing information* tab
+`````````````````````````````````
+    **TODO**
+
+    CUSTOMER PRICE
+        **TODO**
+    VENDOR PRICE
+        **TODO**
+    PROFIT
+        **TODO**
+    RATEPLAN
+        **TODO**
+    DESTINATION
+        **TODO**
+    DESTINATION RATE POLICY
+        **TODO**
+    DESTINATION FEE
+        **TODO**
+    DESTINATION INITIAL INTERVAL
+        **TODO**
+    DESTINATION INITIAL RATE
+        **TODO**
+    DESTINATION NEXT INTERVAL
+        **TODO**
+    DESTINATION NEXT RATE
+        **TODO**
+    ROUTING PLAN
+        **TODO**
+    ROUTING GROUP
+        **TODO**
+    ROUTING TAG
+        **TODO**
+    DIALPEER
+        **TODO**
+    DIALPEER FEE
+        **TODO**
+    DIALPEER INITIAL INTERVAL
+        **TODO**
+    DIALPEER INITIAL RATE
+        **TODO**
+    DIALPEER NEXT INTERVAL
+        **TODO**
+    DIALPEER NEXT RATE
+        **TODO**
+    TIME LIMIT
+        **TODO**
+    CUSTOMER INVOICE
+        **TODO**
+    VENDOR INVOICE
+        **TODO**
+
+CDR Archive
+~~~~~~~~~~~
+
+Reports
+-------
+    **TODO**
+
+Custom Cdrs report
+~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Custom Cdrs** атрибуты:
+
+    Date start
+        **TODO**
+    Date end
+        **TODO**
+    Customer
+        **TODO**
+    Filter
+        **TODO**
+    Group by*
+        **TODO**
+    Send to
+        **TODO**
+
+**Custom Cdr Scheduler** атрибуты:
+
+    Period*
+        **TODO**
+    Customer
+        **TODO**
+    Filter
+        **TODO**
+    Group by*
+        **TODO**
+    Send to
+        **TODO**
+
+Customer Traffic
+~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Customer Traffic** атрибуты:
+
+    Date start*
+        **TODO**
+    Date end*
+        **TODO**
+    Customer
+        **TODO**
+    Send to
+        **TODO**
+
+**Customer Traffic Scheduler** атрибуты:
+
+    Period*
+        **TODO**
+    Customer*
+        **TODO**
+    Send to
+        **TODO**
+
+Vendor Traffic
+~~~~~~~~~~~~~~
+    **TODO**
+
+**Vendor Traffic** атрибуты:
+
+    Date start*
+        **TODO**
+    Date end*
+        **TODO**
+    Vendor
+        **TODO**
+    Send to
+        **TODO**
+
+**Vendor Traffic Scheduler** атрибуты:
+
+    Period*
+        **TODO**
+    Vendor*
+        **TODO**
+    Send to
+        **TODO**
+
+Interval Cdr report
+~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Report Interval Cdr** атрибуты:
+    
+    Date start*
+        **TODO**
+    Date end*
+        **TODO**
+    Interval length*
+        **TODO**
+    Aggregation function*
+        **TODO**
+    Aggregate by*
+        **TODO**
+    Filter
+        **TODO**
+    Group by fields
+        **TODO**
+    Send to
+        **TODO**
+
+**Interval Cdr Scheduler** атрибуты:
+
+Period*
+    **TODO**
+Interval length*
+    **TODO**
+Aggregation function*
+    **TODO**
+Aggregate by*
+    **TODO**
+Filter
+    **TODO**
+Group by
+    **TODO**
+Send to
+    **TODO**
+
+Termination Distributions
+~~~~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Report Realtime Termination Distributions** таблица:
+
+Vendor
+    **TODO**
+Originated Calls Count
+    **TODO**
+Rerouted Calls Count
+    **TODO**
+Rerouted Calls Percent
+    **TODO**
+Termination Attempts Count
+    **TODO**
+Calls Duration
+    **TODO**
+Acd
+    **TODO**
+Origination Asr
+    **TODO**
+Termination Asr
+    **TODO**
+Profit
+    **TODO**
+Customer Price
+    **TODO**
+Vendor Price
+    **TODO**
+
+Origination Performances
+~~~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Report Realtime Origination Performances** таблица:
+
+    Customer Auth
+        **TODO**
+    Cps
+        **TODO**
+    Offered load(Erlang)
+        **TODO**
+    Routing Delay
+        **TODO**
+    Calls Duration
+        **TODO**
+    Calls Count
+        **TODO**
+    Termination Attempts Count
+        **TODO**
+    Acd
+        **TODO**
+    Asr
+        **TODO**
+
+Bad Routings
+~~~~~~~~~~~~
+    **TODO**
+
+**Report Realtime Bad Routings** таблица:
+
+    Customer
+        **TODO**
+    Customer Auth
+        **TODO**
+    Rateplan
+        **TODO**
+    Routing Plan
+        **TODO**
+    Internal Disconnect Code
+        **TODO**
+    Internal Disconnect Reason
+        **TODO**
+    Calls Count
+        **TODO**
+
+Not Authenticateds attempts
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Report Realtime Not Authenticateds** таблица:
+
+Auth Orig Ip
+    **TODO**
+Auth Orig Port
+    **TODO**
+Attempts Count
+    **TODO**
+Internal Disconnect Code
+    **TODO**
+Internal Disconnect Reason
+    **TODO**
+
+Realtime Data
+-------------
+
+Active Calls
+~~~~~~~~~~~~
+    **TODO**
+
+**Active Calls** таблица:
+
+Actions
+    **TODO**
+Customer
+    **TODO**
+Vendor
+    **TODO**
+Duration
+    **TODO**
+Dst Number
+    **TODO**
+Dst Network
+    **TODO**
+Origination Rate
+    **TODO**
+Termination Rate
+    **TODO**
+
+Nodes
+~~~~~
+    **TODO**
+
+**Realtime Data Active Nodes** таблица:
+
+    Id
+        **TODO**
+    Name
+        **TODO**
+    Active Calls Count
+        **TODO**
+    Version
+        **TODO**
+    Shutdown Req Time
+        **TODO**
+    Sessions Num
+        **TODO**
+    Uptime
+        **TODO**
+
+Outgoing Registrations
+~~~~~~~~~~~~~~~~~~~~~~
+    **TODO**
+
+**Outgoing Registrations** таблица:
+
+    Id
+        **TODO**
+    User
+        **TODO**
+    Domain
+        **TODO**
+    State
+        **TODO**
+    Auth User
+        **TODO**
+    Display Name
+        **TODO**
+    Contact	Proxy
+        **TODO**
+    Expires
+        **TODO**
+    Expires Left
+        **TODO**
+    Node
+        **TODO**
+    Last Error Code
+        **TODO**
+    Last Error Initiator
+        **TODO**
+    Last Error Reason
+        **TODO**
+    Last Request Time
+        **TODO**
+    Last Succ Reg Time
+        **TODO**
+    Attempt
+        **TODO**
+    Max Attempts
+        **TODO**
+    Retry
+        **TODO**
+    Delay
+        **TODO**
+
+Logs
+----
+
+Api Logs
+~~~~~~~~
+    **TODO**
+
+**Api Log Details**
+
+    ID
+            **TODO**
+    CREATED AT
+            **TODO**
+    STATUS
+            **TODO**
+    METHOD
+            **TODO**
+    PATH
+            **TODO**
+    CONTROLLER
+            **TODO**
+    ACTION
+            **TODO**
+    PAGE DURATION
+            **TODO**
+    DB DURATION
+            **TODO**
+    PARAMS
+            **TODO**
+    REQUEST HEADERS	
+            **TODO**
+    REQUEST BODY	
+            **TODO**
+    RESPONSE HEADERS	
+            **TODO**
+    RESPONSE BODY
+            **TODO**
+
+Audit Log
+~~~~~~~~~
+    **TODO**
+
+**Audit Log Item Details**
+
+    ID
+        **TODO**
+    ITEM TYPE
+        **TODO**
+    ITEM
+        **TODO**
+    EVENT
+        **TODO**
+    WHODUNNIT
+        **TODO**
+    DATE
+        **TODO**
+    TXID
+        **TODO**
+    IP
+        **TODO**
+
+Logic Logs
+~~~~~~~~~~
+    **TODO**
+
+**Logic Log Details**
+
+
+ID
+    **TODO**
+TIMESTAMP
+    **TODO**
+TXID
+    **TODO**
+LEVEL
+    **TODO**
+SOURCE
+    **TODO**
+MSG
+    **TODO**
+
+Email Logs
+~~~~~~~~~~
+    **TODO**
+
+**Log Email Log Details**
+
+ID
+    **TODO**
+CREATED AT
+    **TODO**
+SENT AT	EMPTY
+    **TODO**
+CONTACT
+    **TODO**
+SMTP CONNECTION
+    **TODO**
+MAIL FROM
+    **TODO**
+MAIL TO
+    **TODO**
+SUBJECT
+    **TODO**
+MSG
+    **TODO**
+
+Events
+~~~~~~
+    **TODO**
+
 System
 ------
 
